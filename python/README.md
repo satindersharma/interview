@@ -380,3 +380,41 @@ print(result)  # {'a': 3, 'b': 3, 'c': 3} (order may vary)
 | Create a Class | Standard `__init__` or `dataclass` | N/A |
 | Update Attribute | Direct assignment (Way 1) | O(1) |
 | String Frequency | `Counter` (Way 2) | O(n) |
+
+
+
+
+```python
+
+Transactions = [
+{"id": 1, "amount": 200, "type": "credit"},
+{"id": 2, "amount": 100, "type": "debit"},
+{"id": 3, "amount": 400, "type": "credit"},
+{"id": 4, "amount": 150, "type": "debit"},
+{"id": 5, "amount": 90, "type": "credit"},
+]
+ 
+# Sort:
+# 1. Credit first
+# 2. Within each type --> descending amount
+#Use sorted() with lambda
+
+
+Transactions = [
+{"id": 1, "amount": 200, "type": "credit"},
+{"id": 2, "amount": 100, "type": "debit"},
+{"id": 3, "amount": 400, "type": "credit"},
+{"id": 4, "amount": 150, "type": "debit"},
+{"id": 5, "amount": 90, "type": "credit"},
+]
+
+sorted_transactions = sorted(
+    Transactions,
+    key=lambda x: (
+        0 if x["type"] == "credit" else 1,  # credit first
+        -x["amount"]                         # amount descending within type
+    )
+)
+
+print(sorted_transactions)
+```
